@@ -5,14 +5,26 @@ import java.io.IOException;
 
 public class Prediction {
 
-	@SuppressWarnings("null")
+	static String gold_cate[] = new String[10000];
+	static String test_cate[] = new String[10000];
+	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
+		
+		getData("gold_standard.xml");
+		getData("test_outcome.xml");
+		// process();
 
+	}
+
+	
+	
+	@SuppressWarnings("resource")
+	public static String[] getData(String xml_name){
 		// Get data from xml file.
 		BufferedReader in = null;
 		try {
-			in = new BufferedReader(new FileReader("test.xml"));
+			in = new BufferedReader(new FileReader(xml_name));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -30,29 +42,35 @@ public class Prediction {
 		}
 
 		String parts[] = data_line2.split(" ");
-		String gold_cate[] = new String[parts.length];
-		;
+		
 		String[] cutString = null;
 		int count = 0;
 
-		for (int i = 0; i < parts.length; i++) {
-			if (parts[i].equals("<Text")) {
-				cutString = parts[i + 1].split("\"");// category=cutString[1]
-				gold_cate[count] = cutString[1];
-				System.out.println(gold_cate[count]);
-				count++;
+		if(xml_name.equals("gold_standard.xml")){
+			for (int i = 0; i < parts.length; i++) {
+				if (parts[i].equals("<Text")) {
+					cutString = parts[i + 1].split("\"");// category=cutString[1]
+					gold_cate[count] = cutString[1];
+					System.out.println("gold : "+gold_cate[count]);
+					count++;
+				}
 			}
-
-			// System.out.println(parts[i]);
+			System.out.println("Finished gold_standard.xml reading... ");
+		}
+		else if(xml_name.equals("test_outcome.xml")){
+			for (int i = 0; i < parts.length; i++) {
+				if (parts[i].equals("<Text")) {
+					cutString = parts[i + 1].split("\"");// category=cutString[1]
+					test_cate[count] = cutString[1];
+					System.out.println("test : "+test_cate[count]);
+					count++;
+				}
+			}
+			System.out.println("Finished test_outcome.xml reading... ");
 		}
 
-		// process();
-
-	}
-
-	public static double getNc_u(int n) {
-
-		return 0;
+		
+		return null;		
 	}
 
 	public static void process() {
