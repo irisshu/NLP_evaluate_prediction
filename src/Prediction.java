@@ -47,6 +47,12 @@ public class Prediction {
 		
 		System.out.println("health-> tp_health,fp_health,tn_health,fn_health : "
 				+ tp_health + "," + fp_health + "," + tn_health + "," + fn_health);
+		
+		System.out.println("music-> tp_music,fp_music,tn_music,fn_music : "
+				+ tp_music + "," + fp_music + "," + tn_music + "," + fn_music);
+		
+		System.out.println("toys_games-> tp_toys_games,fp_toys_games,tn_toys_games,fn_toys_games : "
+				+ tp_toys_games + "," + fp_toys_games + "," + tn_toys_games + "," + fn_toys_games);
 
 	}
 
